@@ -27,6 +27,7 @@ There is no build, lint, or test tooling. Everything is Markdown content edited 
 - Vault folders are numbered by category (`00-Inicio` … `07-Decisiones`) — keep new notes in the matching numbered folder rather than inventing new top-level folders.
 - `07-Decisiones/Registro de Decisiones.md` is a single running ADR log (not one file per decision, despite what the top-level guide's template suggests) — each entry is `## Título` / `**Decisión:**` / `**Por qué:**`. Append new entries in that same format rather than starting a new pattern.
 - `vault/00-Inicio/Home.md` is the vault's single entry point (MOC) — if you add a note, service, or vault section, link it from here too.
+- **Graphify is MANDATORY before exploring an unfamiliar codebase at length (added 2026-09-02, explicit standing instruction from MaGa, token/time-saving):** before manual `grep`/`Read` across many files — yours or a dispatched agent's — run `/graphify .` in that project's root first and use its `graph.html`/`GRAPH_REPORT.md`/`graph.json` output to orient. Same rule applies in every other project with its own CLAUDE.md (HomeLab, WhatsApp Agent) — see `HomeLab/CLAUDE.md` for install locations.
 
 ---
 

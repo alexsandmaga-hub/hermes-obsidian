@@ -19,6 +19,17 @@ import sys
 import json
 from pathlib import Path
 
+# Fix (2026-09-04, bug real encontrado en la Asus): la consola de Windows usa
+# por defecto una codepage (cp1252) que no puede imprimir emojis u otros
+# caracteres fuera de Latin-1 — cualquier nota de Obsidian con un emoji
+# (comunes en este vault, ej. titulos con casita 🏠) hacia crashear el script
+# entero con UnicodeEncodeError apenas Hermes intentaba mostrar ese texto.
+# reconfigure() esta disponible desde Python 3.7+; con errors="replace" en vez
+# de silencioso para no ocultar de verdad un fallo de codificacion real.
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+    sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+
 VAULT_PATH = Path(os.environ.get("HERMES_VAULT_PATH", r"D:\Obsidian Vault"))
 MODEL = "claude-sonnet-5"
 MAX_TURNS = 12
